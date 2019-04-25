@@ -1,0 +1,70 @@
+[System]
+Name='Admission_Possibility'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=20
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='CGPA'
+Range=[0 10]
+NumMFs=5
+MF1='VeryPoor':'trapmf',[-1 0 6 6.5]
+MF2='Medium':'trapmf',[6.5 7 7.5 8]
+MF3='Excellent':'trapmf',[8.5 9.2 10 10.1]
+MF4='Poor':'trapmf',[6 6.2 6.7 7]
+MF5='Good':'trapmf',[7.5 8 8.5 9]
+
+[Input2]
+Name='GreScore'
+Range=[0 340]
+NumMFs=3
+MF1='Low':'trapmf',[0 0 200 250]
+MF2='Medium':'trapmf',[230 252.638888888889 280 290]
+MF3='High':'trapmf',[270 318.225308641975 349 349]
+
+[Input3]
+Name='IELTSscore'
+Range=[1 9]
+NumMFs=3
+MF1='Poor':'trapmf',[0 1 4 5]
+MF2='Medium':'trapmf',[4 5 6 7.5]
+MF3='Strong':'trapmf',[7 7.5 9 10]
+
+[Output1]
+Name='Probability'
+Range=[0 100]
+NumMFs=5
+MF1='VeryLow':'trimf',[-1 0 20]
+MF2='Low':'trapmf',[10 20 30 40]
+MF3='Medium':'trapmf',[30 45 55 60]
+MF4='High':'trapmf',[50 65 70 85]
+MF5='VeryHigh':'trapmf',[70 85 100 101]
+
+[Rules]
+1 1 1, 1 (1) : 1
+1 2 1, 1 (1) : 1
+1 2 2, 2 (1) : 1
+2 2 2, 2 (1) : 1
+3 2 2, 3 (1) : 1
+5 2 1, 3 (1) : 1
+3 3 3, 5 (1) : 1
+3 3 2, 4 (1) : 1
+3 2 3, 4 (1) : 1
+5 2 3, 4 (1) : 1
+5 3 3, 4 (1) : 1
+5 3 3, 4 (1) : 1
+2 3 -2, 3 (1) : 1
+4 3 -3, 3 (1) : 1
+1 3 -1, 2 (1) : 1
+1 3 -3, 3 (1) : 1
+3 3 -1, 4 (1) : 1
+3 2 -3, 4 (1) : 1
+3 3 -2, 5 (1) : 1
+5 3 -3, 4 (1) : 1
